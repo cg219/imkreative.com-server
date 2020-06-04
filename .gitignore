@@ -1,0 +1,4 @@
+node_modules/
+private/
+credentials.js
+.DS_Store
