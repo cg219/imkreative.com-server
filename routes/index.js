@@ -18,10 +18,8 @@ module.exports = (api, contentful) => {
                 const owner = await api.authors.read({slug: 'mente'});
                 const socials = await contentful.getEntries({ content_type: 'social' });
 
-                await ctx.render('home', {
+                ctx.body = {
                     posts: posts,
-                    post: null,
-                    title: 'Homepage',
                     dates: dates,
                     options: {
                         logo: settings.logo,
@@ -30,7 +28,7 @@ module.exports = (api, contentful) => {
                         owner: owner,
                         socials
                     },
-                });
+                };
             } catch (error) {
                 console.error(error);
             }
@@ -49,10 +47,8 @@ module.exports = (api, contentful) => {
                 const owner = await api.authors.read({slug: 'mente'});
                 const socials = await contentful.getEntries({ content_type: 'social' });
 
-                await ctx.render('tags', {
+                ctx.body = {
                     posts: posts,
-                    post: null,
-                    title: 'Tags',
                     dates: dates,
                     options: {
                         logo: settings.logo,
@@ -62,7 +58,7 @@ module.exports = (api, contentful) => {
                         tag: ctx.params.tag,
                         socials
                     },
-                });
+                };
             } catch (error) {
                 console.error(error);
             }
@@ -104,7 +100,7 @@ module.exports = (api, contentful) => {
                     filter: `(${tags}${authors})+id:-${post.id}`
                 });
 
-                await ctx.render('post', {
+                ctx.body = {
                     post: post,
                     title: post.title,
                     date: date,
@@ -116,14 +112,11 @@ module.exports = (api, contentful) => {
                         related,
                         socials
                     }
-                });
+                };
 
             } catch (error) {
                 console.error(error);
             }
-        },
-        async redirect(ctx) {
-            ctx.redirect('/');
         },
         async search(ctx) {
             try {
@@ -140,10 +133,8 @@ module.exports = (api, contentful) => {
 
                 posts = posts.filter(post => (post.title.toLowerCase().indexOf(term.toLowerCase()) >= 0 || TagHelper.check(term, post.tags)) && post);
 
-                await ctx.render('home', {
+                ctx.body = {
                     posts: posts,
-                    post: null,
-                    title: 'Homepage',
                     dates: dates,
                     options: {
                         logo: settings.logo,
@@ -152,7 +143,7 @@ module.exports = (api, contentful) => {
                         owner: owner,
                         socials
                     },
-                });
+                };
             } catch (error) {
                 console.error(error);
             }
@@ -166,17 +157,15 @@ module.exports = (api, contentful) => {
                 const settings = await api.settings.browse();
                 const updatedItems = entries.items.map( site => DataHelper.transform(site, {DateHelper}));
 
-                await ctx.render('portfolio', {
-                    sites: updatedItems,
-                    post: null,
-                    title: 'Portfolio',
+                ctx.body = {
+                    items: updatedItems,
                     options: {
                         logo: settings.logo,
                         nav: settings.navigation,
                         title: settings.title,
                         images: credentials.CONTENTFUL_IMAGES
                     },
-                });
+                };
             } catch (error) {
                 console.error(error);
             }
