@@ -30,7 +30,7 @@ module.exports = (api, contentful) => {
                     },
                 };
             } catch (error) {
-                console.error(error);
+                ctx.body = { error, status: true }
             }
         },
         async tags(ctx) {
@@ -60,7 +60,7 @@ module.exports = (api, contentful) => {
                     },
                 };
             } catch (error) {
-                console.error(error);
+                ctx.body = { error, status: true }
             }
         },
         async settings(ctx) {
@@ -69,7 +69,7 @@ module.exports = (api, contentful) => {
 
                 ctx.body = settings;
             } catch (error) {
-                console.error(error);
+                ctx.body = { error, status: true }
             }
         },
         async authors(ctx) {
@@ -78,7 +78,7 @@ module.exports = (api, contentful) => {
 
                 ctx.body = authors;
             } catch (error) {
-                console.error(error);
+                ctx.body = { error, status: true }
             }
         },
         async post(ctx) {
@@ -115,7 +115,7 @@ module.exports = (api, contentful) => {
                 };
 
             } catch (error) {
-                console.error(error);
+                ctx.body = { error, status: true }
             }
         },
         async search(ctx) {
@@ -145,7 +145,7 @@ module.exports = (api, contentful) => {
                     },
                 };
             } catch (error) {
-                console.error(error);
+                ctx.body = { error, status: true }
             }
         },
         async portfolio(ctx) {
@@ -167,7 +167,7 @@ module.exports = (api, contentful) => {
                     },
                 };
             } catch (error) {
-                console.error(error);
+                ctx.body = { error, status: true }
             }
         }
     }

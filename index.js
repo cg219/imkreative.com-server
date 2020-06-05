@@ -20,7 +20,7 @@ const contentful = ContentfulAPI.createClient({
 });
 const Routes = require('./routes/index')(api, contentful);
 const PORT = process.env.PORT || 3000;
-const IP = process.env.IP || 'localhost';
+// const IP = process.env.IP || 'localhost';
 
 router.get('/api/posts', Routes.index);
 router.get('/api/read/:slug', Routes.post);
@@ -35,6 +35,6 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 
-app.listen(PORT, IP);
+app.listen(PORT);
 
-console.log(`Running on: ${IP}:${PORT}`);
+console.log(`Running on: ${PORT}`);
