@@ -7,6 +7,7 @@ const KoaServe = require('koa-static');
 const KoaBody = require('koa-bodyparser');
 const KoaJSON = require('koa-json');
 const path = require('path');
+const PORT = process.env.PORT || 3000;
 const app = new Koa();
 const router = new KoaRouter();
 const api = new GhostAPI({
@@ -18,16 +19,13 @@ const contentful = ContentfulAPI.createClient({
     space: credentials.CONTENTFUL_SPACE,
     accessToken: credentials.CONTENTFUL_ACCESS_TOKEN
 });
-const Routes = require('./routes/index')(api, contentful);
-const PORT = process.env.PORT || 3000;
-// const IP = process.env.IP || 'localhost';
+const { getPosts, getTags, getPost, search, getPortfolio } = require('./routes');
 
-router.get('/api/posts', Routes.index);
-router.get('/api/read/:slug', Routes.post);
-router.get('/api/tags/:tag', Routes.tags);
-router.get('/api/settings', Routes.settings);
-router.get('/api/portfolio', Routes.portfolio);
-router.post('/api/search', Routes.search);
+router.get('/api/posts', getPosts(api, contentful));
+router.get('/api/read/:slug', getPost(api, contentful));
+router.get('/api/tags/:tag', getTags(api, contentful));
+router.get('/api/portfolio', getPortfolio(api, contentful));
+router.post('/api/search', search(api, contentful));
 
 app
     .use(KoaBody())
