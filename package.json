@@ -6,11 +6,12 @@
   "scripts": {
     "test": "jest",
     "start": "node ./ index.js",
-    "dev": "nodemon --watch ./ index.js"
+    "dev": "nodemon -r dotenv/config ./index.js --watch"
   },
   "author": "Clemente Gomez",
   "license": "ISC",
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "jest": "^26.0.1",
     "nodemon": "^2.0.4",
     "supertest": "^4.0.2"

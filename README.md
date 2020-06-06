@@ -6,8 +6,8 @@
 
 ## Setup
 
-Copy and rename `credentials.sample.js` to `credentials.js` and replace values with proper information.
+Make sure `env` variables are set for variables in `credentials.js`.
 
-## Running
+## Development
 
-```npm start```
+```npm run dev```
