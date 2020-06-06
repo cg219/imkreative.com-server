@@ -8,18 +8,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup NodeJS
-      - uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-      - name: Test API
-      - run: npm ci
-      - run: npm run test
-        env:
-          GHOST_KEY: ${{ secrets.GHOST_KEY }}
-          GHOST_URL: ${{ secrets.GHOST_URL }}
-          GHOST_VERSION: ${{ secrets.GHOST_VERSION }}
-          CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
-          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
-          CONTENTFUL_IMAGES: ${{ secrets.CONTENTFUL_IMAGES }}
+    - uses: actions/checkout@v2
+    - name: Setup NodeJS
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+    - name: Test API
+    - run: npm ci
+    - run: npm run test
+      env:
+        GHOST_KEY: ${{ secrets.GHOST_KEY }}
+        GHOST_URL: ${{ secrets.GHOST_URL }}
+        GHOST_VERSION: ${{ secrets.GHOST_VERSION }}
+        CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
+        CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+        CONTENTFUL_IMAGES: ${{ secrets.CONTENTFUL_IMAGES }}
