@@ -35,6 +35,6 @@ app
 
 const server = app.listen(PORT);
 
-console.log(`Running on: ${PORT}`);
+console.log(`Running on Port: ${PORT}`);
 
 module.exports = server;
