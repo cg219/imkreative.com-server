@@ -141,7 +141,7 @@ exports.search = (api, contentful) => (
                 include: 'tags,authors',
                 fields: 'slug,title,meta_title,meta_description,feature_image,feature,published_at,custom_excerpt,primary_author,primary_tag'
             });
-            const metadata = await getMetadata(posts);
+            const metadata = await getMetadata(posts, api, contentful);
 
             posts = posts.filter(post => (post.title.toLowerCase().indexOf(term.toLowerCase()) >= 0 || TagHelper.check(term, post.tags)) && post);
 

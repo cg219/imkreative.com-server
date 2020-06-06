@@ -22,7 +22,7 @@ const contentful = ContentfulAPI.createClient({
 const { getPosts, getTags, getPost, search, getPortfolio } = require('./routes');
 
 router.get('/api/posts', getPosts(api, contentful));
-router.get('/api/read/:slug', getPost(api, contentful));
+router.get('/api/post/:slug', getPost(api, contentful));
 router.get('/api/tags/:tag', getTags(api, contentful));
 router.get('/api/portfolio', getPortfolio(api, contentful));
 router.post('/api/search', search(api, contentful));
@@ -33,6 +33,8 @@ app
     .use(router.routes())
     .use(router.allowedMethods());
 
-app.listen(PORT);
+const server = app.listen(PORT);
 
 console.log(`Running on: ${PORT}`);
+
+module.exports = server;
