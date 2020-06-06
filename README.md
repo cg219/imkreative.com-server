@@ -1,4 +1,5 @@
 # imkreative.com Backend
+![Continuous Integration](https://github.com/cg219/imkreative.com-server/workflows/Continuous%20Integration/badge.svg)
 
 ## Installation
 
