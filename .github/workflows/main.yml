@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -14,9 +14,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '10.x'
+      - run: npm ci
       - name: Test API
-        run: npm ci
-      - run: npm run test
+        run: npm run test
         env:
           GHOST_KEY: ${{ secrets.GHOST_KEY }}
           GHOST_URL: ${{ secrets.GHOST_URL }}
