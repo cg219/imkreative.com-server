@@ -19,13 +19,15 @@ const contentful = ContentfulAPI.createClient({
     space: credentials.CONTENTFUL_SPACE,
     accessToken: credentials.CONTENTFUL_ACCESS_TOKEN
 });
-const { getPosts, getTags, getPost, search, getPortfolio } = require('./routes');
+const { getPosts, getTaggedPosts, getPost, search, getPortfolio, getSocials, getSettings } = require('./routes');
 
-router.get('/api/posts', getPosts(api, contentful));
-router.get('/api/post/:slug', getPost(api, contentful));
-router.get('/api/tags/:tag', getTags(api, contentful));
-router.get('/api/portfolio', getPortfolio(api, contentful));
-router.post('/api/search', search(api, contentful));
+router.get('/api/posts', getPosts(api));
+router.get('/api/socials', getSocials(contentful));
+router.get('/api/settings', getSettings(api));
+router.get('/api/post/:slug', getPost(api));
+router.get('/api/tagged/:tag', getTaggedPosts(api));
+router.get('/api/portfolio', getPortfolio(contentful));
+router.post('/api/search', search(api));
 
 app
     .use(KoaBody())

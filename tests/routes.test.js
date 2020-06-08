@@ -18,25 +18,17 @@ describe('Test All Posts', () => {
     test('check if posts exists', () => {
         expect(response.body).toHaveProperty('posts');
     })
-
-    test('check if dates exists', () => {
-        expect(response.body).toHaveProperty('dates');
-    })
-
-    test('check if options exists', () => {
-        expect(response.body).toHaveProperty('options');
-    })
 })
 
-describe('Test Tags', () => {
+describe('Test Tagged Posts', () => {
 
     beforeAll(async () => {
         response = await request(app).get('/api/posts');
         slug = response.body.posts[0].tags[0].slug;
-        response = await request(app).get(`/api/tags/${slug}`);
+        response = await request(app).get(`/api/tagged/${slug}`);
     })
 
-    test('check if tags return truthy', () => {
+    test('check if posts return truthy', () => {
         expect(response.body).toHaveProperty('posts');
     })
 })
@@ -73,5 +65,27 @@ describe('Test Portfolio', () => {
 
     test('check if portfolio completes', () => {
         expect(response.body).toHaveProperty('items');
+    })
+})
+
+describe('Test Socials', () => {
+
+    beforeAll(async () => {
+        response = await request(app).get('/api/socials');
+    })
+
+    test('check if socials completes', () => {
+        expect(response.body).toHaveProperty('socials');
+    })
+})
+
+describe('Test Settings', () => {
+
+    beforeAll(async () => {
+        response = await request(app).get('/api/settings');
+    })
+
+    test('check if settings completes', () => {
+        expect(response.body).not.toHaveProperty('error');
     })
 })
