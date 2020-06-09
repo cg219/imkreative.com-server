@@ -6,6 +6,7 @@ const KoaRouter = require('@koa/router');
 const KoaServe = require('koa-static');
 const KoaBody = require('koa-bodyparser');
 const KoaJSON = require('koa-json');
+const KoaCORS = require('@koa/cors');
 const path = require('path');
 const PORT = process.env.PORT || 3000;
 const app = new Koa();
@@ -30,6 +31,7 @@ router.get('/api/portfolio', getPortfolio(contentful));
 router.post('/api/search', search(api));
 
 app
+    .use(KoaCORS())
     .use(KoaBody())
     .use(KoaJSON())
     .use(router.routes())
