@@ -7,7 +7,7 @@
 
 ## Setup
 
-Make sure `env` variables are set for variables in `credentials.js`.
+Make sure `.env` variables are set for variables in `credentials.js`.
 
 ## Development
 
