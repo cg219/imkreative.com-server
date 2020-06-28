@@ -32,6 +32,7 @@ exports.getSettings = (api) => (
                 logo: rawSettings.logo,
                 facebook: rawSettings.facebook,
                 twitter: rawSettings.twitter,
+                url: process.env.FRONTEND_URL || 'http://localhost',
                 owner: {
                     slug: rawOwner.slug,
                     name: rawOwner.name,
