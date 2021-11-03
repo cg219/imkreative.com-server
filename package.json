@@ -28,6 +28,6 @@
     "koa-json": "^2.0.2",
     "koa-router": "^9.0.1",
     "koa-static": "^5.0.0",
-    "validator": "^13.0.0"
+    "validator": "^13.7.0"
   }
 }
